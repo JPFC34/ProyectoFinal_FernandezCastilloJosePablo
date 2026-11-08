@@ -1,0 +1,30 @@
+@model PanelViewModel
+@{
+    ViewData["Title"] = "Panel principal";
+}
+<h1>📊 Panel principal</h1>
+<p class="text-muted">Resumen general del sistema de matrícula.</p>
+<div class="row g-3 mb-4">
+    <div class="col-6 col-md-3"><div class="tarjeta"><div class="icono">👥</div><div>Estudiantes</div><div class="numero">@Model.TotalEstudiantes</div></div></div>
+    <div class="col-6 col-md-3"><div class="tarjeta"><div class="icono">🎓</div><div>Carreras</div><div class="numero">@Model.TotalCarreras</div></div></div>
+    <div class="col-6 col-md-3"><div class="tarjeta"><div class="icono">📚</div><div>Cursos</div><div class="numero">@Model.TotalCursos</div></div></div>
+    <div class="col-6 col-md-3"><div class="tarjeta"><div class="icono">👨‍🏫</div><div>Docentes</div><div class="numero">@Model.TotalDocentes</div></div></div>
+</div>
+@if (Model.CursosSinDocente > 0)
+{
+    <div class="alert alert-warning">⚠ Hay <strong>@Model.CursosSinDocente</strong> curso(s) sin docente asignado. <a asp-controller="Cursos" asp-action="Index">Revisar cursos</a></div>
+}
+<h4>Últimos estudiantes registrados</h4>
+<table class="table tabla-uhcr">
+    <thead><tr><th>Nombre</th><th>Cédula</th><th>Correo</th><th>Carrera</th></tr></thead>
+    <tbody>
+    @foreach (var e in Model.UltimosEstudiantes)
+    {
+        <tr><td>@e.NombreCompleto</td><td>@e.Cedula</td><td>@e.Correo</td><td>@e.Carrera?.Nombre</td></tr>
+    }
+    @if (!Model.UltimosEstudiantes.Any())
+    {
+        <tr><td colspan="4" class="text-center text-muted">Aún no hay estudiantes registrados.</td></tr>
+    }
+    </tbody>
+</table>

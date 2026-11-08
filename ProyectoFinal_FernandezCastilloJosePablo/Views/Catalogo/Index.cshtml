@@ -1,0 +1,33 @@
+@model CatalogoViewModel
+@{
+    ViewData["Title"] = "Cursos de mi carrera";
+}
+<h1>📚 Cursos de mi carrera</h1>
+<div class="alert alert-info">
+    Bienvenido(a), <strong>@Model.Estudiante.NombreCompleto</strong>. Tu carrera es
+    <span class="badge badge-azul">@Model.Estudiante.Carrera?.Nombre</span>
+</div>
+<table class="table tabla-uhcr align-middle">
+    <thead><tr><th>Código</th><th>Curso</th><th>Créditos</th><th>Docente</th><th>Horario</th><th>Cupos disponibles</th></tr></thead>
+    <tbody>
+    @foreach (var c in Model.Cursos)
+    {
+        var disponibles = c.CupoMaximo - c.Matriculas.Count;
+        <tr>
+            <td>@c.Codigo</td>
+            <td>@c.Nombre</td>
+            <td>@c.Creditos</td>
+            <td>@(c.Docente?.Nombre ?? "Por asignar")</td>
+            <td>@c.Horario</td>
+            <td>
+                @if (disponibles > 0) { <span class="badge badge-ok">@disponibles de @c.CupoMaximo</span> }
+                else { <span class="badge badge-lleno">Cupo lleno</span> }
+            </td>
+        </tr>
+    }
+    @if (!Model.Cursos.Any())
+    {
+        <tr><td colspan="6" class="text-center text-muted">Todavía no hay cursos registrados para tu carrera.</td></tr>
+    }
+    </tbody>
+</table>
