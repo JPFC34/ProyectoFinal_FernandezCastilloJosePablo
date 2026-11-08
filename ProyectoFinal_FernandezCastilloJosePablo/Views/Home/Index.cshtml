@@ -1,8 +1,16 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@{
+    ViewData["Title"] = "Inicio";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="hero text-center mb-4">
+    <span class="logo-uh grande mb-3">UH</span>
+    <h1>Sistema de Matrícula Universitaria</h1>
+    <p class="lead">Universidad Horizonte de Costa Rica (UHCR)</p>
+    <p>Elige tu carrera y consulta los cursos disponibles de forma rápida y segura.</p>
+    <a class="btn btn-dorado btn-lg me-2" asp-controller="Cuenta" asp-action="Registro">Registrarme</a>
+    <a class="btn btn-outline-light btn-lg" asp-controller="Cuenta" asp-action="IniciarSesion">Iniciar sesión</a>
+</div>
+<div class="row g-3">
+    <div class="col-md-4"><div class="tarjeta"><div class="icono">🎓</div><h4>Elige tu carrera</h4><p>Selecciona la carrera de tu interés al registrarte.</p></div></div>
+    <div class="col-md-4"><div class="tarjeta"><div class="icono">📚</div><h4>Consulta los cursos</h4><p>Revisa créditos, horario, docente y cupos disponibles.</p></div></div>
+    <div class="col-md-4"><div class="tarjeta"><div class="icono">🔒</div><h4>Acceso seguro</h4><p>Tu información está protegida con ASP.NET Core Identity.</p></div></div>
 </div>
