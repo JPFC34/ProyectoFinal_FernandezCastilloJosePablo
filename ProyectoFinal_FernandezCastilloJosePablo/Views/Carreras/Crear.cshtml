@@ -1,0 +1,15 @@
+@model Carrera
+@{
+    ViewData["Title"] = "Registrar carrera";
+}
+<h1>🎓 Registrar carrera</h1>
+<div class="formulario-uhcr col-md-7">
+    <form asp-action="Crear" method="post">
+        <partial name="_Formulario" model="Model" />
+        <button type="submit" class="btn btn-dorado">Guardar</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+    </form>
+</div>
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
