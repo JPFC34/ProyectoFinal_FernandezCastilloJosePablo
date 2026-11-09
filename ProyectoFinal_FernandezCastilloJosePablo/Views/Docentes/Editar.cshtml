@@ -1,0 +1,16 @@
+@model Docente
+@{
+    ViewData["Title"] = "Editar docente";
+}
+<h1>👨‍🏫 Editar docente</h1>
+<div class="formulario-uhcr col-md-7">
+    <form asp-action="Editar" method="post">
+        <input type="hidden" asp-for="Id" />
+        <partial name="_Formulario" model="Model" />
+        <button type="submit" class="btn btn-dorado">Guardar cambios</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+    </form>
+</div>
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
